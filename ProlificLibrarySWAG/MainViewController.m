@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "Constants.h"
+#import "AFNetworking.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
@@ -24,13 +25,20 @@
 
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 
-    NSString *string = [NSString stringWithFormat:@"%@books", apiPath];
-    NSLog(@"%@", string);
-    NSURL *url = [NSURL URLWithString:string];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        (NSLog(@"Entro!"));
+    NSString *getAll = [NSString stringWithFormat:@"%@books", apiPath];
+    NSLog(@"%@", getAll);
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//        (NSLog(@"Entro!"));
+//    }];
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:getAll parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"JSON: %@", error);
     }];
+
+
 }
 
 - (void)didReceiveMemoryWarning

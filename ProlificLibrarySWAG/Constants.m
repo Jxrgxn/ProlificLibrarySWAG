@@ -10,6 +10,6 @@
 
 @implementation Constants
 
-NSString *const apiPath = @"http://prolific-interview.herokuapp.com/54010b87bb5e6d0007070b6e/";
+NSString *const apiPath = @"http://prolific-interview.herokuapp.com/54495a761cc6670007f46d46/";
 
 @end
