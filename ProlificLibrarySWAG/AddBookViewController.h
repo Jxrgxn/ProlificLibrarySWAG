@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddBookViewController : ViewController
+@interface AddBookViewController : UIViewController
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "MainViewController.h"
+#import "Constants.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
-@property UITableView* bookTableView;
+@property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 
 @end
 
@@ -22,6 +23,14 @@
     self.bookTableView.dataSource = self;
 
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+
+    NSString *string = [NSString stringWithFormat:@"%@books", apiPath];
+    NSLog(@"%@", string);
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        (NSLog(@"Entro!"));
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +47,7 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+
     return nil;
 }
 
