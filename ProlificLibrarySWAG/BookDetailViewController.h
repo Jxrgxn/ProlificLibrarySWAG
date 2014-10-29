@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BookData.h"
 
 @interface BookDetailViewController : UIViewController
+@property BookData *bookDetailObject;
 
 @end
