@@ -91,8 +91,8 @@
 {
     //Where are we going?
     BookDetailViewController *detailvc = segue.destinationViewController;
-    detailvc.bookDetailObject = 
-
+    NSIndexPath *detailPath = [self.bookTableView indexPathForSelectedRow];
+    detailvc.bookDetailObject = self.allBooksArray[detailPath.row];
 
 }
 @end

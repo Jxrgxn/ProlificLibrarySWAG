@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="-109" y="86"/>
         </scene>
-        <!--View Controller-->
+        <!--Book Detail View Controller-->
         <scene sceneID="FoO-bA-LoE">
             <objects>
-                <viewController id="SOw-8h-zdd" sceneMemberID="viewController">
+                <viewController id="SOw-8h-zdd" customClass="BookDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eHc-fK-7IT"/>
                         <viewControllerLayoutGuide type="bottom" id="zhi-vi-xbC"/>
@@ -101,18 +101,64 @@
                     <view key="view" contentMode="scaleToFill" id="zgG-rw-h1R">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpm-qA-u4G">
+                                <rect key="frame" x="53" y="112" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQn-rN-HwW">
+                                <rect key="frame" x="53" y="141" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Publisher" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faW-VR-lar">
+                                <rect key="frame" x="53" y="170" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNP-4f-cmT">
+                                <rect key="frame" x="53" y="237" width="125" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Checkout" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdU-z0-rFg">
+                                <rect key="frame" x="53" y="284" width="207" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last checked out by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOA-LM-YVd">
+                                <rect key="frame" x="53" y="208" width="161" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="b9N-Vz-9xF"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="TQn-rN-HwW" id="Oiv-z9-vrt"/>
+                        <outlet property="checkoutButton" destination="rdU-z0-rFg" id="Loh-AS-oGX"/>
+                        <outlet property="lastCheckedOutLabel" destination="WNP-4f-cmT" id="hs6-Qp-in1"/>
+                        <outlet property="publisherLabel" destination="faW-VR-lar" id="XLj-Fw-Ofh"/>
+                        <outlet property="titleLabel" destination="Xpm-qA-u4G" id="DLY-bf-2vg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6m7-Oq-3RA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818" y="-340"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Book View Controller-->
         <scene sceneID="LIJ-Ge-Arm">
             <objects>
-                <viewController id="Zbv-ln-60P" sceneMemberID="viewController">
+                <viewController id="Zbv-ln-60P" customClass="AddBookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ASt-AY-ovh"/>
                         <viewControllerLayoutGuide type="bottom" id="PMo-wc-tIG"/>
@@ -126,6 +172,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="bookTitleTextField:" destination="Zbv-ln-60P" eventType="editingDidEnd" id="VmN-9E-VBq"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hpk-id-H52">
                                 <rect key="frame" x="54" y="163" width="214" height="30"/>
@@ -155,6 +204,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="authorTextField" destination="Hpk-id-H52" id="24H-9C-cUK"/>
+                        <outlet property="bookTitleTextField" destination="RsO-Cy-Zbd" id="a9G-Ns-ROw"/>
+                        <outlet property="categoriesTextField" destination="wvj-sL-2g5" id="0KA-UV-KB4"/>
+                        <outlet property="publisherTextField" destination="VXn-Vk-WgH" id="F2c-5n-Jis"/>
+                        <outlet property="submitButton" destination="eu6-C0-34Q" id="ars-bP-MjV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjZ-s8-V0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

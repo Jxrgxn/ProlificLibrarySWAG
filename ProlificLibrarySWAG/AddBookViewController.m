@@ -9,6 +9,11 @@
 #import "AddBookViewController.h"
 
 @interface AddBookViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *bookTitleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *authorTextField;
+@property (weak, nonatomic) IBOutlet UITextField *publisherTextField;
+@property (weak, nonatomic) IBOutlet UITextField *categoriesTextField;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 

@@ -9,6 +9,11 @@
 #import "BookDetailViewController.h"
 
 @interface BookDetailViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *publisherLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastCheckedOutLabel;
+@property (weak, nonatomic) IBOutlet UITextField *checkoutButton;
 
 @end
 
@@ -21,18 +26,27 @@
         // Custom initialization
     }
     return self;
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
+    if (self.bookDetailObject.lastDateCheckedOutBy == (id)[NSNull null])
+    {
+        self.bookDetailObject.lastDateCheckedOutBy = @"Unavailable";
+    }
+
+    self.titleLabel.text = self.bookDetailObject.title;
+    self.authorLabel.text = self.bookDetailObject.author;
+    self.publisherLabel.text = self.bookDetailObject.publisher;
+    self.lastCheckedOutLabel.text = [NSString stringWithFormat:@"%@ at %@", self.bookDetailObject.lastDateCheckedOutBy, self.bookDetailObject.lastCheckedOutDate];}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
