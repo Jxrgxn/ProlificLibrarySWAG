@@ -25,6 +25,7 @@
 		2533ECE619FAE1B20000CC6D /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2533ECE519FAE1B20000CC6D /* BookDetailViewController.m */; };
 		2533ECE919FAEDE10000CC6D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2533ECE819FAEDE10000CC6D /* Constants.m */; };
 		253B7CFF1A00B6A50018C5BF /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */; };
+		253B7D021A00C2740018C5BF /* APIConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B7D011A00C2740018C5BF /* APIConnectionHelper.m */; };
 		CBA7C2DE07E5966CF8323A7D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69CE5F6839F67385C8C7AB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,8 @@
 		2533ECE819FAEDE10000CC6D /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		253B7CFD1A00B6A50018C5BF /* AddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookViewController.h; sourceTree = "<group>"; };
 		253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
+		253B7D001A00C2740018C5BF /* APIConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConnectionHelper.h; sourceTree = "<group>"; };
+		253B7D011A00C2740018C5BF /* APIConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIConnectionHelper.m; sourceTree = "<group>"; };
 		9030190FFF8D0F0E17E4A210 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC69CE5F6839F67385C8C7AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBA1E8E2AC2FD81D9925992 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				2533ECC119FAC3CD0000CC6D /* MainViewController.h */,
 				2533ECC219FAC3CD0000CC6D /* MainViewController.m */,
 				253B7CFD1A00B6A50018C5BF /* AddBookViewController.h */,
+				253B7D001A00C2740018C5BF /* APIConnectionHelper.h */,
+				253B7D011A00C2740018C5BF /* APIConnectionHelper.m */,
 				253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */,
 				2533ECE719FAEDE10000CC6D /* Constants.h */,
 				2533ECE819FAEDE10000CC6D /* Constants.m */,
@@ -322,6 +327,7 @@
 			files = (
 				2533ECC319FAC3CD0000CC6D /* MainViewController.m in Sources */,
 				2533ECE619FAE1B20000CC6D /* BookDetailViewController.m in Sources */,
+				253B7D021A00C2740018C5BF /* APIConnectionHelper.m in Sources */,
 				2533ECBD19FAC3CD0000CC6D /* AppDelegate.m in Sources */,
 				2533ECE319FADE560000CC6D /* BookData.m in Sources */,
 				2533ECB919FAC3CD0000CC6D /* main.m in Sources */,

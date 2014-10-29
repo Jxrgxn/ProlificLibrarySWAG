@@ -10,4 +10,14 @@
 
 @interface APIConnectionHelper : NSObject
 
++ (void) addLibraryBook:(NSString *)title
+                 author:(NSString *)author
+             categories:(NSString *)categories
+              publisher:(NSString *)publisher;
+
++ (void) updateLibraryBook:(NSString *)title
+                   author:(NSString *)author
+                categories:(NSString *)categories;
+
+
 @end
