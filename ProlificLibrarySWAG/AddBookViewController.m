@@ -7,13 +7,16 @@
 //
 
 #import "AddBookViewController.h"
+#import "APIConnectionHelper.h"
 
-@interface AddBookViewController ()
+
+@interface AddBookViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *bookTitleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
 @property (weak, nonatomic) IBOutlet UITextField *publisherTextField;
 @property (weak, nonatomic) IBOutlet UITextField *categoriesTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) NSMutableArray *addBookMutableArray;
 
 @end
 
@@ -41,10 +44,23 @@
 }
 
 - (IBAction)onSubmitButtonPressed:(id)sender {
-    [self ]
+//    if ([self.bookTitleTextField.text isEqualToString:@""] || [self.authorTextField.text isEqualToString:@""]){
+//        UIAlertView *emptySubmitAlert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"You have to enter something!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//
+//        [emptySubmitAlert show];
+//    }
 
+    APIConnectionHelper *submitBook = [APIConnectionHelper new];
+    [submitBook addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];
+    NSLog(@"Sent contents of submitBook %@", submitBook);
+    
 }
 
+- (BOOL)textFieldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 
 

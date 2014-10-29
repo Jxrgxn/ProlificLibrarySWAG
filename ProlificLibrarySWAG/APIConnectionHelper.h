@@ -10,14 +10,24 @@
 
 @interface APIConnectionHelper : NSObject
 
-+ (void) addLibraryBook:(NSString *)title
+- (void) addLibraryBook:(NSString *)title
                  author:(NSString *)author
              categories:(NSString *)categories
               publisher:(NSString *)publisher;
 
-+ (void) updateLibraryBook:(NSString *)title
-                   author:(NSString *)author
-                categories:(NSString *)categories;
+- (void) updateLibraryBook:(NSString *)title
+                    author:(NSString *)author
+                categories:(NSString *)categories
+                 publisher:(NSString *)publisher
+                    bookID:(id)bookID
+          lastCheckedOutBy:(NSString *)lastCheckedOutBy;
+
+- (void) checkedOutBook:(NSString *)currentName
+                 author:(NSString *)author
+                 bookID:(id)bookID
+         checkedOutDate:(NSDate *)checkedOutDate;
+
+- (void) deleteAll;
 
 
 @end

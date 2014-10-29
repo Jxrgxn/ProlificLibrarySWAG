@@ -12,7 +12,7 @@
 
 @implementation APIConnectionHelper
 
-+ (void)addLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher
+- (void)addLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher
 {
     NSString *addBookURL = [NSString stringWithFormat:@"%@books", apiPath];
 
@@ -25,7 +25,48 @@
     }];
 }
 
-+ (void)
+- (void) updateLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher bookID:(id)bookID lastCheckedOutBy:(NSString *)lastCheckedOutBy
+{
+    NSString *updateBookURL = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
 
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+    NSDictionary *updateParam = @{@"title":title, @"author":author, @"categories":categories, @"publisher":publisher, @"lastCheckedOutBy":lastCheckedOutBy};
+
+    [manager PUT:updateBookURL parameters:updateParam success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Success");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Failure");
+    }];
+}
+
+- (void)checkedOutBook:(NSString *)currentName author:(NSString *)author bookID:(id)bookID checkedOutDate:(NSDate *)checkedOutDate
+{
+    NSString *checkedOutURL = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
+
+    NSDictionary *checkedOutParam = @{@"lastCheckedOutBy":currentName, @"lastCheckedOut":checkedOutDate};
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+    [manager PUT:checkedOutURL parameters:checkedOutParam success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Successs!");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Failure");
+    }];
+}
+
+- (void)deleteAll
+{
+    NSString *deleteAllBooks = [NSString stringWithFormat:@"%@clean", apiPath];
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+    [manager DELETE:deleteAllBooks parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Success!");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Failure!");
+    }];
+}
 
 @end

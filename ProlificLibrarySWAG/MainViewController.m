@@ -11,10 +11,12 @@
 #import "AFNetworking.h"
 #import "BookData.h"
 #import "BookDetailViewController.h"
+#import "AddBookViewController.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (strong, nonatomic) NSMutableArray *allBooksArray;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addBookBarButton;
 
 @end
 
@@ -23,7 +25,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.bookTableView.delegate = self;
     self.allBooksArray = [NSMutableArray new];
 
     self.navigationController.navigationBar.barTintColor = [UIColor redColor];
@@ -41,11 +42,25 @@
                 {
                     BookData *tempObject = [BookData new];
                     tempObject.author = [allGetDict objectForKey:@"author"];
-                    tempObject.categories = [allGetDict objectForKey:@"cateories"];
                     tempObject.title = [allGetDict objectForKey:@"title"];
+
+                    if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
+                        {
+                            tempObject.lastDateCheckedOutBy = @"N/A";
+                        }
+                    if ([allGetDict objectForKey:@"lastCheckedOut"] == (id)[NSNull null])
+                    {
+
+                        [NSDateFormatter localizedStringFromDate:tempObject.lastCheckedOutDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterLongStyle];
+                        tempObject.lastCheckedOutDate = @"N/A";
+
+                    }
+                    tempObject.categories = [allGetDict objectForKey:@"cateories"];
                     tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckedOut"];
                     tempObject.publisher = [allGetDict objectForKey:@"publisher"];
                     tempObject.ID = [allGetDict objectForKey:@"id"];
+
+
                     [self.allBooksArray addObject:tempObject];
                 }
             }
@@ -87,12 +102,15 @@
     return self.allBooksArray.count;
 }
 
+#pragma Navigation
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Where are we going?
+    if (sender != self.addBookBarButton){
     BookDetailViewController *detailvc = segue.destinationViewController;
     NSIndexPath *detailPath = [self.bookTableView indexPathForSelectedRow];
     detailvc.bookDetailObject = self.allBooksArray[detailPath.row];
+    }
 
 }
 @end

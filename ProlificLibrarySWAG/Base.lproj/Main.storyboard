@@ -65,6 +65,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBookBarButton" destination="GR5-MZ-24p" id="Seg-tJ-0Am"/>
                         <outlet property="bookTableView" destination="nUt-oo-NpT" id="SJR-vl-KMX"/>
                     </connections>
                 </viewController>
@@ -195,7 +196,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eu6-C0-34Q">
-                                <rect key="frame" x="137" y="325" width="49" height="30"/>
+                                <rect key="frame" x="137" y="77" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
