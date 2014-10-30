@@ -12,6 +12,7 @@
 #import "BookData.h"
 #import "BookDetailViewController.h"
 #import "AddBookViewController.h"
+#import "APIConnectionHelper.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
@@ -113,6 +114,16 @@
     return self.allBooksArray.count;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BookData *deleteSingleBookInstance = [self.allBooksArray objectAtIndex:indexPath.row];
+    APIConnectionHelper *deleteHelper = [APIConnectionHelper new];
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        [deleteHelper deleteSingleBook:deleteSingleBookInstance.ID];
+        [self.bookTableView reloadData];
+    }
+}
+
 #pragma Navigation
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -124,4 +135,11 @@
     }
 
 }
+
+-(IBAction)onClearAllButtonPressed:(id)sender{
+    APIConnectionHelper *deleteAllHelper = [APIConnectionHelper new];
+    [deleteAllHelper deleteAll];
+    [self.bookTableView reloadData];
+}
+
 @end

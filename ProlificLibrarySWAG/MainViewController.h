@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+//conect again the outlet i cant do that from here
+//roger 
+
 @interface MainViewController : UIViewController
 
 @end

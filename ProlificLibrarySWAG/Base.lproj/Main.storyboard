@@ -58,7 +58,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Pno-8W-3mE">
-                        <barButtonItem key="leftBarButtonItem" title="Clear All" id="6jj-Lj-kPk"/>
+                        <barButtonItem key="leftBarButtonItem" title="Clear All" id="6jj-Lj-kPk">
+                            <connections>
+                                <action selector="onClearAllButtonPressed:" destination="vXZ-lx-hvc" id="3LO-lN-LBl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="GR5-MZ-24p">
                             <connections>
                                 <segue destination="Zbv-ln-60P" kind="modal" id="Mqy-sM-ihy"/>
@@ -144,6 +148,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeY-Hq-cFf">
+                                <rect key="frame" x="234" y="108" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -177,9 +189,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="bookTitleTextField:" destination="Zbv-ln-60P" eventType="editingDidEnd" id="VmN-9E-VBq"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hpk-id-H52">
                                 <rect key="frame" x="54" y="163" width="214" height="30"/>
@@ -227,7 +236,7 @@
                     </view>
                     <connections>
                         <outlet property="authorTextField" destination="Hpk-id-H52" id="24H-9C-cUK"/>
-                        <outlet property="bookTitleTextField" destination="RsO-Cy-Zbd" id="a9G-Ns-ROw"/>
+                        <outlet property="bookTitleTextField" destination="RsO-Cy-Zbd" id="dU8-wD-43r"/>
                         <outlet property="categoriesTextField" destination="wvj-sL-2g5" id="0KA-UV-KB4"/>
                         <outlet property="publisherTextField" destination="VXn-Vk-WgH" id="F2c-5n-Jis"/>
                         <outlet property="submitButton" destination="eu6-C0-34Q" id="ars-bP-MjV"/>

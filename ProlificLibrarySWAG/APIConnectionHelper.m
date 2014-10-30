@@ -31,7 +31,6 @@
 {
     NSString *updateBookURL = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
 
-
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
     NSDictionary *updateParam = @{@"title":title, @"author":author, @"categories":categories, @"publisher":publisher, @"lastCheckedOutBy":lastCheckedOutBy};
