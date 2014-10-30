@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 
 }
 
@@ -66,7 +67,6 @@
 
         self.emptyDoneAlert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your changes won't be saved if you leave this page." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
         self.emptyDoneAlert.tag = 0;
-        self.emptyDoneAlert.delegate = self;
         [self.emptyDoneAlert show];
 
     }else
