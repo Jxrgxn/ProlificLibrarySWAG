@@ -25,6 +25,7 @@
     if (self) {
         // Custom initialization
     }
+    self.checkoutButton.placeholder = @"Checkout this Book";
     return self;
 
 }
@@ -33,16 +34,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (self.bookDetailObject.lastDateCheckedOutBy == (id)[NSNull null])
-    {
-        self.bookDetailObject.lastDateCheckedOutBy = @"Unavailable";
-    }
 
     self.titleLabel.text = self.bookDetailObject.title;
     self.authorLabel.text = self.bookDetailObject.author;
     self.publisherLabel.text = self.bookDetailObject.publisher;
-    self.lastCheckedOutLabel.text = [NSString stringWithFormat:@"%@ at %@", self.bookDetailObject.lastDateCheckedOutBy, self.bookDetailObject.lastCheckedOutDate];}
+    self.lastCheckedOutLabel.text = [NSString stringWithFormat:@"%@ at %@", self.bookDetailObject.lastDateCheckedOutBy, self.bookDetailObject.lastCheckedOutDate];
+}
+- (IBAction)onCheckoutButtonPressed:(id)sender {
 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"To Check out this Book...!" message:@"Please enter your name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *alertTextField = [alert textFieldAtIndex:0];;
+    alertTextField.placeholder = @"Enter your name";
+    [alert show];
+
+    if ([alertTextField.text  isEqual: @""]){
+        [alert show];
+    }
+
+}
 
 - (void)didReceiveMemoryWarning
 {

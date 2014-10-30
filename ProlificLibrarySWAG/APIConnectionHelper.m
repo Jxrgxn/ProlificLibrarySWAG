@@ -14,12 +14,14 @@
 
 - (void)addLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher
 {
-    NSString *addBookURL = [NSString stringWithFormat:@"%@books", apiPath];
+    NSString *addBookURL = [NSString stringWithFormat:@"%@books/", apiPath];
+
+    NSDictionary *params = @{@"title":title, @"author":author, @"categories":categories, @"publisher":publisher};
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
-    [manager POST:addBookURL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"Success!");
+    [manager POST:addBookURL parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Success! JSON: %@", responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Failure dude!");
     }];
@@ -50,11 +52,12 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
     [manager PUT:checkedOutURL parameters:checkedOutParam success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"Successs!");
+        NSLog(@"Success! JSON: %@", responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Failure");
     }];
 }
+
 
 - (void)deleteAll
 {
@@ -69,4 +72,16 @@
     }];
 }
 
+-(void)deleteSingleBook:(id)bookID
+{
+    NSString *deleteSingleBook = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+    [manager DELETE:deleteSingleBook parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Success!");
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Failure. Bummer");
+    }];
+}
 @end

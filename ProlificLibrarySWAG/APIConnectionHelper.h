@@ -29,5 +29,7 @@
 
 - (void) deleteAll;
 
+- (void) deleteSingleBook:(id)bookID;
+
 
 @end

@@ -41,8 +41,19 @@
             for (NSDictionary *allGetDict in responseArray){
                 {
                     BookData *tempObject = [BookData new];
-                    tempObject.author = [allGetDict objectForKey:@"author"];
-                    tempObject.title = [allGetDict objectForKey:@"title"];
+
+                    if ([allGetDict objectForKey:@"title"] == [NSNull null]){
+                        tempObject.title = @"N/A";
+                    }
+                    else {
+                        tempObject.title = [allGetDict objectForKey:@"title"];
+                    }
+                    if ([allGetDict objectForKey:@"author"] == [NSNull null]){
+                        tempObject.author = @"N/A";
+                    }
+                    else if ([allGetDict objectForKey:@"author"] != [NSNull null]) {
+                        tempObject.author = [allGetDict objectForKey:@"author"];
+                    }
 
                     if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
                         {
@@ -51,8 +62,8 @@
                     if ([allGetDict objectForKey:@"lastCheckedOut"] == (id)[NSNull null])
                     {
 
-                        [NSDateFormatter localizedStringFromDate:tempObject.lastCheckedOutDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterLongStyle];
-                        tempObject.lastCheckedOutDate = @"N/A";
+                        //[NSDateFormatter localizedStringFromDate:tempObject.lastCheckedOutDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterLongStyle];
+                        //tempObject.lastCheckedOutDate = @"N/A";
 
                     }
                     tempObject.categories = [allGetDict objectForKey:@"cateories"];
