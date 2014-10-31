@@ -35,7 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
+    
 
 }
 
@@ -46,7 +47,7 @@
 
 - (IBAction)onSubmitButtonPressed:(id)sender {
     if ([self.bookTitleTextField.text isEqualToString:@""] || [self.authorTextField.text isEqualToString:@""]){
-        UIAlertView *emptySubmitAlert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"You have to enter something!" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        UIAlertView *emptySubmitAlert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"You have to enter a Title and Author" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
 
         [emptySubmitAlert show];
     }else{
@@ -60,7 +61,7 @@
 }
 
 - (IBAction)onDoneButtonTapped:(id)sender {
-    if (![self.bookTitleTextField.text isEqualToString:@""] || ![self.authorTextField.text isEqualToString:@""]){ // whats is this app about?
+    if (![self.bookTitleTextField.text isEqualToString:@""] || ![self.authorTextField.text isEqualToString:@""]){ 
 
         self.emptyDoneAlert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your changes won't be saved if you leave this page." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
         self.emptyDoneAlert.tag = 0;

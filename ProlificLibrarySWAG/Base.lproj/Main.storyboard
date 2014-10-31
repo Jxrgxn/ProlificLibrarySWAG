@@ -63,7 +63,7 @@
                                 <action selector="onClearAllButtonPressed:" destination="vXZ-lx-hvc" id="3LO-lN-LBl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="GR5-MZ-24p">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GR5-MZ-24p">
                             <connections>
                                 <segue destination="Zbv-ln-60P" kind="modal" id="Mqy-sM-ihy"/>
                             </connections>
@@ -128,7 +128,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNP-4f-cmT">
-                                <rect key="frame" x="53" y="226" width="125" height="24"/>
+                                <rect key="frame" x="53" y="226" width="267" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -158,9 +158,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92x-TP-ObF">
-                                <rect key="frame" x="141" y="258" width="46" height="30"/>
+                                <rect key="frame" x="107" y="258" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Checkout Book">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -180,6 +180,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="TQn-rN-HwW" id="Oiv-z9-vrt"/>
                         <outlet property="categoriesLabel" destination="cgw-b6-b8m" id="9XA-Ht-jJr"/>
+                        <outlet property="checkoutButton" destination="92x-TP-ObF" id="6Sr-zo-eNR"/>
                         <outlet property="editButton" destination="VeY-Hq-cFf" id="muS-9T-ZmM"/>
                         <outlet property="lastCheckedOutLabel" destination="WNP-4f-cmT" id="hs6-Qp-in1"/>
                         <outlet property="publisherLabel" destination="faW-VR-lar" id="XLj-Fw-Ofh"/>
@@ -327,32 +328,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjZ-s8-V0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818" y="319"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Z0k-eK-VfA">
-            <objects>
-                <viewController id="dki-wB-TmQ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FGE-FU-vob"/>
-                        <viewControllerLayoutGuide type="bottom" id="7oE-Fz-0rU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="V3G-Sh-B4S">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Full Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-sE-CVc">
-                                <rect key="frame" x="53" y="79" width="214" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fI1-p5-R0S" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1208" y="319"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

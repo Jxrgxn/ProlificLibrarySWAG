@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *publisherLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastCheckedOutLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoriesLabel;
-@property (weak, nonatomic) IBOutlet UITextField *checkoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *checkoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @end
@@ -29,7 +29,6 @@
     if (self) {
         // Custom initialization
     }
-    self.checkoutButton.placeholder = @"Checkout this Book";
     return self;
 
 }
@@ -37,11 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"entro 3");
     // Do any additional setup after loading the view.
 
     [self putBookInfo];
-    NSLog(@"entro 4");
 }
 
 // HERE WHAT YOU SHOULD DO WHEN THE VIEW IS PRESENTENED AFTER EDITING A BOOK WHICH METHOD IS CALLED
@@ -50,19 +47,20 @@
 {
     [super viewWillAppear:animated];
     [self putBookInfo];
+    self.lastCheckedOutLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 -(void)putBookInfo
 {
+    if (self.bookDetailObject.categories == (id)[NSNull null]) {
+        self.categoriesLabel.text = @"N/A";
+    }
     self.titleLabel.text = self.bookDetailObject.title;
     self.authorLabel.text = self.bookDetailObject.author;
     self.publisherLabel.text = self.bookDetailObject.publisher;
     self.categoriesLabel.text = [NSString stringWithFormat:@"Tags: %@", self.bookDetailObject.categories];
     self.lastCheckedOutLabel.text = [NSString stringWithFormat:@"%@ at %@", self.bookDetailObject.lastDateCheckedOutBy, self.bookDetailObject.lastCheckedOutDate];
-    NSLog(@"TIEMPO %f",[self.bookDetailObject.lastCheckedOutDate timeIntervalSinceNow]);
-    if (!self.bookDetailObject.lastCheckedOutDate) {
-        self.lastCheckedOutLabel.text = @"N/A";
-    }
+    
 }
 
 - (IBAction)onCheckoutButtonPressed:(id)sender {
@@ -79,15 +77,19 @@
 
     NSDate *currentDate = [NSDate date];
 
-    [APIConnectionHelper checkedOutBook:self.bookDetailObject.title author:self.bookDetailObject.author bookID:self.bookDetailObject.ID checkedOutDate:currentDate];
 
-    self.bookDetailObject.lastDateCheckedOutBy = [alertView textFieldAtIndex:0].text;
+    [APIConnectionHelper checkedOutBook:self.bookDetailObject.lastDateCheckedOutBy author:self.bookDetailObject.author bookID:self.bookDetailObject.ID checkedOutDate:currentDate];
+
     self.bookDetailObject.lastCheckedOutDate = currentDate;
-
-    //[self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        NSString *name = [alertView textFieldAtIndex:0].text;
+        self.bookDetailObject.lastDateCheckedOutBy = name;
+    }
+}
 
 -(IBAction)onShareButtonPressed:(id)sender
 {

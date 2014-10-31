@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
 
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
 
     self.editTitleTextField.text = self.editBookDetailObject.title;
     self.editAuthorTextField.text = self.editBookDetailObject.author;
@@ -55,12 +55,8 @@
     self.editBookDetailObject.categories = self.editCategoryTextField.text;
 
     self.editBookDetailObject.lastDateCheckedOutBy = self.lastCheckedOutTextField.text;
-
-    //BookDetailViewController *bookDetailVC = [BookDetailViewController new];
-    //bookDetailVC.bookDetailObject = self.editBookDetailObject;
     [self.navigationController popViewControllerAnimated:true];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    //[self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -29,11 +29,9 @@
     [super viewDidLoad];
     self.allBooksArray = [NSMutableArray new];
 
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
 
     NSString *getAll = [NSString stringWithFormat:@"%@books", apiPath];
-    NSLog(@"%@", getAll);
-    //NSURLRequest *getAllrequest = [NSURLRequest requestWithURL:getAll];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:getAll parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -53,23 +51,22 @@
                     if ([allGetDict objectForKey:@"author"] == [NSNull null]){
                         tempObject.author = @"N/A";
                     }
-                    else {
+                    else
+                    {
                         tempObject.author = [allGetDict objectForKey:@"author"];
                     }
 
                     if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
-                        {
+                    {
                             tempObject.lastDateCheckedOutBy = @"N/A";
-                        } else {
-                            tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
-                        }
+                    }else{
+                    tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
+                    }
                     if ([allGetDict objectForKey:@"lastCheckedOut"] == [NSNull null])
                     {
                         tempObject.lastCheckedOutDate = nil;
-                        NSLog(@"ENTRO!!!!!!!!");
-
-                    } else {
-                        tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckOut"];
+                    }else {
+                        tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckedOut"];
                     }
                     tempObject.categories = [allGetDict objectForKey:@"cateories"];
                     tempObject.publisher = [allGetDict objectForKey:@"publisher"];
@@ -126,7 +123,6 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookData *deleteSingleBookInstance = [self.allBooksArray objectAtIndex:indexPath.row];
-    //APIConnectionHelper *deleteHelper = [APIConnectionHelper new];
     if (editingStyle == UITableViewCellEditingStyleDelete){
         [APIConnectionHelper deleteSingleBook:deleteSingleBookInstance.ID];
         [self.bookTableView reloadData];
@@ -137,9 +133,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Where are we going?
-    NSLog(@"entro 1");
     if (sender != self.addBookBarButton){
-        NSLog(@"entro 2");
     BookDetailViewController *detailvc = segue.destinationViewController;
     NSIndexPath *detailPath = [self.bookTableView indexPathForSelectedRow];
     detailvc.bookDetailObject = self.allBooksArray[detailPath.row];
@@ -148,9 +142,39 @@
 }
 
 -(IBAction)onClearAllButtonPressed:(id)sender{
-    //APIConnectionHelper *deleteAllHelper = [APIConnectionHelper new];
     [APIConnectionHelper deleteAll];
     [self.bookTableView reloadData];
 }
+
+
+//if ([allGetDict objectForKey:@"title"] == [NSNull null]){
+//    tempObject.title = @"N/A";
+//}
+//else {
+//    tempObject.title = [allGetDict objectForKey:@"title"];
+//}
+//if ([allGetDict objectForKey:@"author"] == [NSNull null]){
+//    tempObject.author = @"N/A";
+//}
+//else {
+//    tempObject.author = [allGetDict objectForKey:@"author"];
+//}
+//
+////                    if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
+////                    {
+////                            tempObject.lastDateCheckedOutBy = @"N/A";
+////                    }
+//tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
+//
+//if ([allGetDict objectForKey:@"lastCheckedOut"] == [NSNull null])
+//{
+//    tempObject.lastCheckedOutDate = nil;
+//
+//} else {
+//    tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckOut"];
+//}
+//tempObject.categories = [allGetDict objectForKey:@"cateories"];
+//tempObject.publisher = [allGetDict objectForKey:@"publisher"];
+//tempObject.ID = [allGetDict objectForKey:@"id"];
 
 @end
