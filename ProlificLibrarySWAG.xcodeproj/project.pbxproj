@@ -141,7 +141,6 @@
 				2533ECE119FADE560000CC6D /* BookData.h */,
 				2533ECE219FADE560000CC6D /* BookData.m */,
 				2533ECBC19FAC3CD0000CC6D /* AppDelegate.m */,
-				2533ECBE19FAC3CD0000CC6D /* Main.storyboard */,
 				2533ECE419FAE1B20000CC6D /* BookDetailViewController.h */,
 				2533ECE519FAE1B20000CC6D /* BookDetailViewController.m */,
 				2533ECC119FAC3CD0000CC6D /* MainViewController.h */,
@@ -154,6 +153,7 @@
 				253B7D011A00C2740018C5BF /* APIConnectionHelper.m */,
 				2533ECE719FAEDE10000CC6D /* Constants.h */,
 				2533ECE819FAEDE10000CC6D /* Constants.m */,
+				2533ECBE19FAC3CD0000CC6D /* Main.storyboard */,
 				2533ECC419FAC3CD0000CC6D /* Images.xcassets */,
 				2533ECB319FAC3CD0000CC6D /* Supporting Files */,
 			);

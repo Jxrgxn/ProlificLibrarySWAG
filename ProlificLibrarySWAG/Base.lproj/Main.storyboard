@@ -133,15 +133,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Checkout Book" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdU-z0-rFg">
-                                <rect key="frame" x="53" y="258" width="207" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
-                                <connections>
-                                    <action selector="onCheckoutButtonPressed:" destination="SOw-8h-zdd" eventType="editingDidEnd" id="NLI-n7-H0q"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last checked out by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOA-LM-YVd">
                                 <rect key="frame" x="53" y="204" width="161" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -166,6 +157,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92x-TP-ObF">
+                                <rect key="frame" x="141" y="258" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCheckoutButtonPressed:" destination="SOw-8h-zdd" eventType="touchUpInside" id="hSp-w6-rrO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -179,7 +180,6 @@
                     <connections>
                         <outlet property="authorLabel" destination="TQn-rN-HwW" id="Oiv-z9-vrt"/>
                         <outlet property="categoriesLabel" destination="cgw-b6-b8m" id="9XA-Ht-jJr"/>
-                        <outlet property="checkoutButton" destination="rdU-z0-rFg" id="Loh-AS-oGX"/>
                         <outlet property="editButton" destination="VeY-Hq-cFf" id="muS-9T-ZmM"/>
                         <outlet property="lastCheckedOutLabel" destination="WNP-4f-cmT" id="hs6-Qp-in1"/>
                         <outlet property="publisherLabel" destination="faW-VR-lar" id="XLj-Fw-Ofh"/>
@@ -327,6 +327,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjZ-s8-V0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818" y="319"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Z0k-eK-VfA">
+            <objects>
+                <viewController id="dki-wB-TmQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FGE-FU-vob"/>
+                        <viewControllerLayoutGuide type="bottom" id="7oE-Fz-0rU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V3G-Sh-B4S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Full Name Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Neu-sE-CVc">
+                                <rect key="frame" x="53" y="79" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fI1-p5-R0S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1208" y="319"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

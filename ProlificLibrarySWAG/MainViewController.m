@@ -14,6 +14,7 @@
 #import "AddBookViewController.h"
 #import "APIConnectionHelper.h"
 
+
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (strong, nonatomic) NSMutableArray *allBooksArray;
@@ -52,23 +53,25 @@
                     if ([allGetDict objectForKey:@"author"] == [NSNull null]){
                         tempObject.author = @"N/A";
                     }
-                    else if ([allGetDict objectForKey:@"author"] != [NSNull null]) {
+                    else {
                         tempObject.author = [allGetDict objectForKey:@"author"];
                     }
 
                     if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
                         {
                             tempObject.lastDateCheckedOutBy = @"N/A";
+                        } else {
+                            tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
                         }
-                    if ([allGetDict objectForKey:@"lastCheckedOut"] == (id)[NSNull null])
+                    if ([allGetDict objectForKey:@"lastCheckedOut"] == [NSNull null])
                     {
+                        tempObject.lastCheckedOutDate = nil;
+                        NSLog(@"ENTRO!!!!!!!!");
 
-                        //[NSDateFormatter localizedStringFromDate:tempObject.lastCheckedOutDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterLongStyle];
-                        //tempObject.lastCheckedOutDate = @"N/A";
-
+                    } else {
+                        tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckOut"];
                     }
                     tempObject.categories = [allGetDict objectForKey:@"cateories"];
-                    tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckedOut"];
                     tempObject.publisher = [allGetDict objectForKey:@"publisher"];
                     tempObject.ID = [allGetDict objectForKey:@"id"];
 
@@ -89,6 +92,12 @@
     }];
 
     NSLog(@"Exit");
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.bookTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,9 +126,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookData *deleteSingleBookInstance = [self.allBooksArray objectAtIndex:indexPath.row];
-    APIConnectionHelper *deleteHelper = [APIConnectionHelper new];
+    //APIConnectionHelper *deleteHelper = [APIConnectionHelper new];
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        [deleteHelper deleteSingleBook:deleteSingleBookInstance.ID];
+        [APIConnectionHelper deleteSingleBook:deleteSingleBookInstance.ID];
         [self.bookTableView reloadData];
     }
 }
@@ -128,7 +137,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Where are we going?
+    NSLog(@"entro 1");
     if (sender != self.addBookBarButton){
+        NSLog(@"entro 2");
     BookDetailViewController *detailvc = segue.destinationViewController;
     NSIndexPath *detailPath = [self.bookTableView indexPathForSelectedRow];
     detailvc.bookDetailObject = self.allBooksArray[detailPath.row];
@@ -137,8 +148,8 @@
 }
 
 -(IBAction)onClearAllButtonPressed:(id)sender{
-    APIConnectionHelper *deleteAllHelper = [APIConnectionHelper new];
-    [deleteAllHelper deleteAll];
+    //APIConnectionHelper *deleteAllHelper = [APIConnectionHelper new];
+    [APIConnectionHelper deleteAll];
     [self.bookTableView reloadData];
 }
 

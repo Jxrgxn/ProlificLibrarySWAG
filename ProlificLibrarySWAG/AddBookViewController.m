@@ -50,10 +50,7 @@
 
         [emptySubmitAlert show];
     }else{
-    APIConnectionHelper *submitBook = [APIConnectionHelper new];
-    [submitBook addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];
-
-    NSLog(@"Sent contents of submitBook %@", submitBook);
+    [APIConnectionHelper addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];
 
     self.bookTitleTextField.text = @"";
     self.authorTextField.text = @"";
@@ -63,7 +60,7 @@
 }
 
 - (IBAction)onDoneButtonTapped:(id)sender {
-    if (![self.bookTitleTextField.text isEqualToString:@""] || ![self.authorTextField.text isEqualToString:@""]){
+    if (![self.bookTitleTextField.text isEqualToString:@""] || ![self.authorTextField.text isEqualToString:@""]){ // whats is this app about?
 
         self.emptyDoneAlert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Your changes won't be saved if you leave this page." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
         self.emptyDoneAlert.tag = 0;
@@ -73,10 +70,14 @@
         [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+    if (alertView.tag == 0 && buttonIndex == 1)
+    {
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
 }
+
 
 @end

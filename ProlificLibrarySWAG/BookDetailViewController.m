@@ -8,6 +8,7 @@
 
 #import "BookDetailViewController.h"
 #import "EditBookViewController.h"
+#import "APIConnectionHelper.h"
 
 @interface BookDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -36,18 +37,57 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"entro 3");
     // Do any additional setup after loading the view.
 
+    [self putBookInfo];
+    NSLog(@"entro 4");
+}
+
+// HERE WHAT YOU SHOULD DO WHEN THE VIEW IS PRESENTENED AFTER EDITING A BOOK WHICH METHOD IS CALLED
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self putBookInfo];
+}
+
+-(void)putBookInfo
+{
     self.titleLabel.text = self.bookDetailObject.title;
     self.authorLabel.text = self.bookDetailObject.author;
     self.publisherLabel.text = self.bookDetailObject.publisher;
     self.categoriesLabel.text = [NSString stringWithFormat:@"Tags: %@", self.bookDetailObject.categories];
     self.lastCheckedOutLabel.text = [NSString stringWithFormat:@"%@ at %@", self.bookDetailObject.lastDateCheckedOutBy, self.bookDetailObject.lastCheckedOutDate];
+    NSLog(@"TIEMPO %f",[self.bookDetailObject.lastCheckedOutDate timeIntervalSinceNow]);
+    if (!self.bookDetailObject.lastCheckedOutDate) {
+        self.lastCheckedOutLabel.text = @"N/A";
+    }
 }
+
 - (IBAction)onCheckoutButtonPressed:(id)sender {
+    UIAlertView *alertView = [UIAlertView new];
+    [alertView setDelegate:self];
+    [alertView setTitle:@"Please Enter Your Name"];
+    [alertView addButtonWithTitle:@"Cancel"];
+    [alertView addButtonWithTitle:@"OK"];
 
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView textFieldAtIndex:0].keyboardType = UIKeyboardTypeAlphabet;
+
+    [alertView show];
+
+    NSDate *currentDate = [NSDate date];
+
+    [APIConnectionHelper checkedOutBook:self.bookDetailObject.title author:self.bookDetailObject.author bookID:self.bookDetailObject.ID checkedOutDate:currentDate];
+
+    self.bookDetailObject.lastDateCheckedOutBy = [alertView textFieldAtIndex:0].text;
+    self.bookDetailObject.lastCheckedOutDate = currentDate;
+
+    //[self dismissViewControllerAnimated:YES completion:nil];
 
 }
+
 
 -(IBAction)onShareButtonPressed:(id)sender
 {

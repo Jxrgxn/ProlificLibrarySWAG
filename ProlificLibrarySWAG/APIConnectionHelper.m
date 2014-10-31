@@ -12,7 +12,7 @@
 
 @implementation APIConnectionHelper
 
-- (void)addLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher
++ (void)addLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher
 {
     NSString *addBookURL = [NSString stringWithFormat:@"%@books/", apiPath];
 
@@ -27,7 +27,7 @@
     }];
 }
 
-- (void) updateLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher bookID:(id)bookID lastCheckedOutBy:(NSString *)lastCheckedOutBy
++ (void) updateLibraryBook:(NSString *)title author:(NSString *)author categories:(NSString *)categories publisher:(NSString *)publisher bookID:(id)bookID lastCheckedOutBy:(NSString *)lastCheckedOutBy
 {
     NSString *updateBookURL = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
 
@@ -42,7 +42,7 @@
     }];
 }
 
-- (void)checkedOutBook:(NSString *)currentName author:(NSString *)author bookID:(id)bookID checkedOutDate:(NSDate *)checkedOutDate
++ (void)checkedOutBook:(NSString *)currentName author:(NSString *)author bookID:(id)bookID checkedOutDate:(NSDate *)checkedOutDate
 {
     NSString *checkedOutURL = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
 
@@ -58,7 +58,7 @@
 }
 
 
-- (void)deleteAll
++ (void)deleteAll
 {
     NSString *deleteAllBooks = [NSString stringWithFormat:@"%@clean", apiPath];
 
@@ -71,7 +71,7 @@
     }];
 }
 
--(void)deleteSingleBook:(id)bookID
++(void)deleteSingleBook:(id)bookID
 {
     NSString *deleteSingleBook = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
 

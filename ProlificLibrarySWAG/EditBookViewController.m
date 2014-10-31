@@ -39,12 +39,15 @@
     self.editTitleTextField.text = self.editBookDetailObject.title;
     self.editAuthorTextField.text = self.editBookDetailObject.author;
     self.editPublisherTextField.text = self.editBookDetailObject.publisher;
+    if (!self.editBookDetailObject.lastCheckedOutDate) {
+        self.lastCheckedOutTextField.text  = @"N/A!!";
+    } else {
     self.lastCheckedOutTextField.text = [NSString stringWithFormat:@"%@ at %@", self.editBookDetailObject.lastDateCheckedOutBy, self.editBookDetailObject.lastCheckedOutDate];
+    }
 
 }
 - (IBAction)onSaveButtonPressed:(id)sender {
-    APIConnectionHelper *saveHelper = [APIConnectionHelper new];
-    [saveHelper updateLibraryBook:self.editTitleTextField.text author:self.editAuthorTextField.text categories:self.editCategoryTextField.text publisher:self.editPublisherTextField.text bookID:self.editBookDetailObject.ID lastCheckedOutBy:self.lastCheckedOutTextField.text];
+    [APIConnectionHelper updateLibraryBook:self.editTitleTextField.text author:self.editAuthorTextField.text categories:self.editCategoryTextField.text publisher:self.editPublisherTextField.text bookID:self.editBookDetailObject.ID lastCheckedOutBy:self.lastCheckedOutTextField.text];
 
     self.editBookDetailObject.title = self.editTitleTextField.text;
     self.editBookDetailObject.author = self.editAuthorTextField.text;
@@ -53,10 +56,11 @@
 
     self.editBookDetailObject.lastDateCheckedOutBy = self.lastCheckedOutTextField.text;
 
-    BookDetailViewController *bookDetailVC = [BookDetailViewController new];
-    bookDetailVC.bookDetailObject = self.editBookDetailObject;
-
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //BookDetailViewController *bookDetailVC = [BookDetailViewController new];
+    //bookDetailVC.bookDetailObject = self.editBookDetailObject;
+    [self.navigationController popViewControllerAnimated:true];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
