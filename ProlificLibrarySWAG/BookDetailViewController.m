@@ -77,7 +77,6 @@
 
     NSDate *currentDate = [NSDate date];
 
-
     [APIConnectionHelper checkedOutBook:self.bookDetailObject.lastDateCheckedOutBy author:self.bookDetailObject.author bookID:self.bookDetailObject.ID checkedOutDate:currentDate];
 
     self.bookDetailObject.lastCheckedOutDate = currentDate;

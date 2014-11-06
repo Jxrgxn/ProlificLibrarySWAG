@@ -30,56 +30,25 @@
     self.allBooksArray = [NSMutableArray new];
 
     self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
-
-    NSString *getAll = [NSString stringWithFormat:@"%@books", apiPath];
-
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:getAll parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        if ([responseObject isKindOfClass:[NSArray class]]) {
-            NSArray *responseArray = responseObject;
-            for (NSDictionary *allGetDict in responseArray){
-                {
-                    BookData *tempObject = [BookData new];
-
-                    if ([allGetDict objectForKey:@"title"] == [NSNull null]){
-                        tempObject.title = @"N/A";
-                    }
-                    else {
-                        tempObject.title = [allGetDict objectForKey:@"title"];
-                    }
-                    if ([allGetDict objectForKey:@"author"] == [NSNull null]){
-                        tempObject.author = @"N/A";
-                    }
-                    else
-                    {
-                        tempObject.author = [allGetDict objectForKey:@"author"];
-                    }
-
-                    if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
-                    {
-                            tempObject.lastDateCheckedOutBy = @"N/A";
-                    }else{
-                    tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
-                    }
-                    if ([allGetDict objectForKey:@"lastCheckedOut"] == [NSNull null])
-                    {
-                        tempObject.lastCheckedOutDate = nil;
-                    }else {
-                        tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckedOut"];
-                    }
-                    tempObject.categories = [allGetDict objectForKey:@"cateories"];
-                    tempObject.publisher = [allGetDict objectForKey:@"publisher"];
-                    tempObject.ID = [allGetDict objectForKey:@"id"];
+    //get all books
 
 
-                    [self.allBooksArray addObject:tempObject];
-                }
-            }
-            NSLog(@"Array contains: %@", self.allBooksArray);
-            [self.bookTableView reloadData];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getAllBooks];
+    [self.bookTableView reloadData];
+}
+
+-(void)getAllBooks
+{
+    [APIConnectionHelper getAllBooksListWithSuccess:^(NSArray *books) {
+        NSLog(@"Succes");
+        self.allBooksArray = [NSMutableArray arrayWithArray:books];
+        [self.bookTableView reloadData];
+    } failure:^(NSError *error) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Library"
                                                             message:[error localizedDescription]
                                                            delegate:nil
@@ -87,14 +56,6 @@
                                                   otherButtonTitles:nil];
         [alertView show];
     }];
-
-    NSLog(@"Exit");
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.bookTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

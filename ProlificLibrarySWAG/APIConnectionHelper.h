@@ -31,5 +31,6 @@
 
 + (void) deleteSingleBook:(id)bookID;
 
++(void)getAllBooksListWithSuccess:(void (^)(NSArray *books))success failure:(void (^)(NSError *error))failure;
 
 @end

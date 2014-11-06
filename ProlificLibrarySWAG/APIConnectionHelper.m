@@ -9,6 +9,7 @@
 #import "APIConnectionHelper.h"
 #import "Constants.h"
 #include "AFNetworking.h"
+#include "BookData.h"
 
 @implementation APIConnectionHelper
 
@@ -83,4 +84,65 @@
         NSLog(@"Failure. Bummer");
     }];
 }
+
++(void)getAllBooksListWithSuccess:(void (^)(NSArray *books))success failure:(void (^)(NSError *error))failure
+{
+    NSString *getAll = [NSString stringWithFormat:@"%@books", apiPath];
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:getAll parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        if ([responseObject isKindOfClass:[NSArray class]]) {
+            NSArray *responseArray = responseObject;
+            NSMutableArray *addBooks = [NSMutableArray new];
+            for (NSDictionary *allGetDict in responseArray){
+                {
+                    BookData *tempObject = [BookData new];
+
+                    if ([allGetDict objectForKey:@"title"] == [NSNull null]){
+                        tempObject.title = @"N/A";
+                    }
+                    else {
+                        tempObject.title = [allGetDict objectForKey:@"title"];
+                    }
+                    if ([allGetDict objectForKey:@"author"] == [NSNull null]){
+                        tempObject.author = @"N/A";
+                    }
+                    else
+                    {
+                        tempObject.author = [allGetDict objectForKey:@"author"];
+                    }
+
+                    if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
+                    {
+                        tempObject.lastDateCheckedOutBy = @"N/A";
+                    }else{
+                        tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
+                    }
+                    if ([allGetDict objectForKey:@"lastCheckedOut"] == [NSNull null])
+                    {
+                        tempObject.lastCheckedOutDate = nil;
+                    }else {
+                        tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckedOut"];
+                    }
+                    tempObject.categories = [allGetDict objectForKey:@"cateories"];
+                    tempObject.publisher = [allGetDict objectForKey:@"publisher"];
+                    tempObject.ID = [allGetDict objectForKey:@"id"];
+
+
+                    [addBooks addObject:tempObject];
+
+                }
+            }
+            NSLog(@"Array contains: %@", addBooks);
+            success(addBooks);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(error);
+    }];
+    
+    NSLog(@"Exit");
+
+}
+
 @end
