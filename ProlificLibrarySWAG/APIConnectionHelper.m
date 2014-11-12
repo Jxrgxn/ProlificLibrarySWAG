@@ -72,13 +72,20 @@
     }];
 }
 
-+(void)deleteSingleBook:(id)bookID
++(void)deleteSingleBook:(id)bookID completion:(void (^)(BOOL))completionBlock
+//+(void)deleteSingleBook:(void (^)(id *bookID))success failure:(void (^)(NSError *error))failure
 {
     NSString *deleteSingleBook = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
-    [manager DELETE:deleteSingleBook parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager DELETE:deleteSingleBook parameters:nil
+            success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+        [backgroundQueue addOperationWithBlock:^{
+            completionBlock(YES);
+        }];
         NSLog(@"Success!");
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Failure. Bummer");
@@ -125,7 +132,7 @@
                     }else {
                         tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckedOut"];
                     }
-                    tempObject.categories = [allGetDict objectForKey:@"cateories"];
+                    tempObject.categories = [allGetDict objectForKey:@"categories"];
                     tempObject.publisher = [allGetDict objectForKey:@"publisher"];
                     tempObject.ID = [allGetDict objectForKey:@"id"];
 

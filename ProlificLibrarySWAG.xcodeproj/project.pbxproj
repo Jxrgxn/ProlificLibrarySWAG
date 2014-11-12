@@ -193,9 +193,9 @@
 				2533ECC119FAC3CD0000CC6D /* MainViewController.h */,
 				2533ECC219FAC3CD0000CC6D /* MainViewController.m */,
 				253B7CFD1A00B6A50018C5BF /* AddBookViewController.h */,
+				253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */,
 				25BBE2701A023F8200773849 /* EditBookViewController.h */,
 				25BBE2711A023F8200773849 /* EditBookViewController.m */,
-				253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";

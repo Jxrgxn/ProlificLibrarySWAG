@@ -29,7 +29,9 @@
 
 + (void) deleteAll;
 
-+ (void) deleteSingleBook:(id)bookID;
++ (void) deleteSingleBook:(id)bookID
+               completion:(void (^)(BOOL success))completionBlock;
+
 
 +(void)getAllBooksListWithSuccess:(void (^)(NSArray *books))success failure:(void (^)(NSError *error))failure;
 

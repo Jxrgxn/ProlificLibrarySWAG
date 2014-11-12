@@ -15,7 +15,7 @@
 #import "APIConnectionHelper.h"
 
 
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *bookTableView;
 @property (strong, nonatomic) NSMutableArray *allBooksArray;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addBookBarButton;
@@ -31,6 +31,7 @@
 
     self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
     //get all books
+
 
 
 }
@@ -85,10 +86,13 @@
 {
     BookData *deleteSingleBookInstance = [self.allBooksArray objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        [APIConnectionHelper deleteSingleBook:deleteSingleBookInstance.ID];
-        [self.bookTableView reloadData];
+        [APIConnectionHelper deleteSingleBook:deleteSingleBookInstance.ID completion:^(BOOL success) {
+            [self getAllBooks];
+            }];
     }
 }
+//MBProgressHUD (heads up display)
+//Using NSDate formatter short style long style medium style (use short style) long style
 
 #pragma Navigation
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -97,45 +101,27 @@
     if (sender != self.addBookBarButton){
     BookDetailViewController *detailvc = segue.destinationViewController;
     NSIndexPath *detailPath = [self.bookTableView indexPathForSelectedRow];
-    detailvc.bookDetailObject = self.allBooksArray[detailPath.row];
+        BookData *book = self.allBooksArray[detailPath.row];
+    detailvc.bookDetailObject = book;
     }
 
 }
 
 -(IBAction)onClearAllButtonPressed:(id)sender{
-    [APIConnectionHelper deleteAll];
-    [self.bookTableView reloadData];
+    UIAlertView *clearAllVerifyAlertView = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Pressing this button deletes all books. Are you sure?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    [clearAllVerifyAlertView show];
 }
 
 
-//if ([allGetDict objectForKey:@"title"] == [NSNull null]){
-//    tempObject.title = @"N/A";
-//}
-//else {
-//    tempObject.title = [allGetDict objectForKey:@"title"];
-//}
-//if ([allGetDict objectForKey:@"author"] == [NSNull null]){
-//    tempObject.author = @"N/A";
-//}
-//else {
-//    tempObject.author = [allGetDict objectForKey:@"author"];
-//}
-//
-////                    if ([allGetDict objectForKey:@"lastCheckedOutBy"] == [NSNull null])
-////                    {
-////                            tempObject.lastDateCheckedOutBy = @"N/A";
-////                    }
-//tempObject.lastDateCheckedOutBy = [allGetDict objectForKey:@"lastCheckedOutBy"];
-//
-//if ([allGetDict objectForKey:@"lastCheckedOut"] == [NSNull null])
-//{
-//    tempObject.lastCheckedOutDate = nil;
-//
-//} else {
-//    tempObject.lastCheckedOutDate = [allGetDict objectForKey:@"lastCheckOut"];
-//}
-//tempObject.categories = [allGetDict objectForKey:@"cateories"];
-//tempObject.publisher = [allGetDict objectForKey:@"publisher"];
-//tempObject.ID = [allGetDict objectForKey:@"id"];
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0){
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
+    else if (buttonIndex == 1){
+        [APIConnectionHelper deleteAll];
+    }
+}
 
 @end

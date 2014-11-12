@@ -53,7 +53,7 @@
 -(void)putBookInfo
 {
     if (self.bookDetailObject.categories == (id)[NSNull null]) {
-        self.categoriesLabel.text = @"N/A";
+        self.categoriesLabel.text = @"";
     }
     self.titleLabel.text = self.bookDetailObject.title;
     self.authorLabel.text = self.bookDetailObject.author;
