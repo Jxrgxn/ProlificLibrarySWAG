@@ -27,7 +27,7 @@
                  bookID:(id)bookID
          checkedOutDate:(NSDate *)checkedOutDate;
 
-+ (void) deleteAll;
++ (void) deleteAll:(void (^)(BOOL success))completionBlock;
 
 + (void) deleteSingleBook:(id)bookID
                completion:(void (^)(BOOL success))completionBlock;

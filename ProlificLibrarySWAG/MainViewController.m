@@ -32,8 +32,6 @@
     self.navigationController.navigationBar.barTintColor = [UIColor lightGrayColor];
     //get all books
 
-
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -108,19 +106,30 @@
 }
 
 -(IBAction)onClearAllButtonPressed:(id)sender{
-    UIAlertView *clearAllVerifyAlertView = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Pressing this button deletes all books. Are you sure?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    UIAlertView *clearAllVerifyAlertView = [[UIAlertView alloc]
+                                            initWithTitle:@"Warning"
+                                            message:@"Pressing this button deletes all books. Are you sure?"
+                                            delegate:nil
+                                            cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:@"Yes", nil];
+    [clearAllVerifyAlertView setDelegate:self];
     [clearAllVerifyAlertView show];
+
 }
 
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0){
+        NSLog(@"Entroducing");
         [self dismissViewControllerAnimated:YES completion:^{
         }];
     }
     else if (buttonIndex == 1){
-        [APIConnectionHelper deleteAll];
+        NSLog(@"Entro");
+        [APIConnectionHelper deleteAll:^(BOOL success) {
+            NSLog(@"Double Success");
+        }];
     }
 }
 

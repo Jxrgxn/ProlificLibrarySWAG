@@ -59,13 +59,17 @@
 }
 
 
-+ (void)deleteAll
++ (void)deleteAll:(void (^)(BOOL))completionBlock
 {
     NSString *deleteAllBooks = [NSString stringWithFormat:@"%@clean", apiPath];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
 
     [manager DELETE:deleteAllBooks parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [backgroundQueue addOperationWithBlock:^{
+            completionBlock(YES);
+        }];
         NSLog(@"Success!");
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Failure!");
@@ -73,7 +77,6 @@
 }
 
 +(void)deleteSingleBook:(id)bookID completion:(void (^)(BOOL))completionBlock
-//+(void)deleteSingleBook:(void (^)(id *bookID))success failure:(void (^)(NSError *error))failure
 {
     NSString *deleteSingleBook = [NSString stringWithFormat:@"%@books/%@", apiPath, bookID];
     NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];

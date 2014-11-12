@@ -36,8 +36,6 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
-    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,12 +49,19 @@
 
         [emptySubmitAlert show];
     }else{
-    [APIConnectionHelper addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];
+        [APIConnectionHelper addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];[[NSOperationQueue mainQueue]addOperationWithBlock:^{
+
+            UIAlertView *submissionAlert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You just added a new book!" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [submissionAlert show];
+        }];
 
     self.bookTitleTextField.text = @"";
     self.authorTextField.text = @"";
     self.categoriesTextField.text = @"";
     self.publisherTextField.text = @"";
+
+
+
     }
 }
 
