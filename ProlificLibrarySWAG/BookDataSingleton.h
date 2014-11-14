@@ -10,4 +10,8 @@
 
 @interface BookDataSingleton : NSObject
 
+@property (nonatomic) NSMutableArray *allBooksLibrary;
+
++(instancetype)sharedBookData;
+
 @end

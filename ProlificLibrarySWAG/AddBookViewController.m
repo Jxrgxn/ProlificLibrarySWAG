@@ -49,17 +49,21 @@
 
         [emptySubmitAlert show];
     }else{
-        [APIConnectionHelper addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];[[NSOperationQueue mainQueue]addOperationWithBlock:^{
-
-            UIAlertView *submissionAlert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You just added a new book!" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [submissionAlert show];
-        }];
+        [APIConnectionHelper addLibraryBook:self.bookTitleTextField.text author:self.authorTextField.text categories:self.categoriesTextField.text publisher:self.publisherTextField.text];
+//Notes for the coder--So as it stands now the code will just execute and confirm that the user has sent their information but at this point it just does it like some dummy app. So you need to add a completion block that only resets the text when there's actually a success in the networking transmission. 
+//        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+//
+//            UIAlertView *submissionAlert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You just added a new book!" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+//            [submissionAlert show];
+//        }];
 
     self.bookTitleTextField.text = @"";
     self.authorTextField.text = @"";
     self.categoriesTextField.text = @"";
     self.publisherTextField.text = @"";
 
+    UIAlertView *submissionAlert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You just added a new book!" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [submissionAlert show];
 
 
     }

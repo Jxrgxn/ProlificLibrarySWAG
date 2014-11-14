@@ -26,6 +26,7 @@
 		2533ECE919FAEDE10000CC6D /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2533ECE819FAEDE10000CC6D /* Constants.m */; };
 		253B7CFF1A00B6A50018C5BF /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */; };
 		253B7D021A00C2740018C5BF /* APIConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B7D011A00C2740018C5BF /* APIConnectionHelper.m */; };
+		255366CF1A1555C7001E5672 /* BookDataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 255366CE1A1555C7001E5672 /* BookDataSingleton.m */; };
 		25BBE2721A023F8200773849 /* EditBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BBE2711A023F8200773849 /* EditBookViewController.m */; };
 		CBA7C2DE07E5966CF8323A7D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC69CE5F6839F67385C8C7AB /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,8 @@
 		253B7CFE1A00B6A50018C5BF /* AddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
 		253B7D001A00C2740018C5BF /* APIConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConnectionHelper.h; sourceTree = "<group>"; };
 		253B7D011A00C2740018C5BF /* APIConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIConnectionHelper.m; sourceTree = "<group>"; };
+		255366CD1A1555C7001E5672 /* BookDataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDataSingleton.h; sourceTree = "<group>"; };
+		255366CE1A1555C7001E5672 /* BookDataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDataSingleton.m; sourceTree = "<group>"; };
 		25BBE2701A023F8200773849 /* EditBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditBookViewController.h; sourceTree = "<group>"; };
 		25BBE2711A023F8200773849 /* EditBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditBookViewController.m; sourceTree = "<group>"; };
 		9030190FFF8D0F0E17E4A210 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				2533ECBC19FAC3CD0000CC6D /* AppDelegate.m */,
 				253B7D001A00C2740018C5BF /* APIConnectionHelper.h */,
 				253B7D011A00C2740018C5BF /* APIConnectionHelper.m */,
+				255366CD1A1555C7001E5672 /* BookDataSingleton.h */,
+				255366CE1A1555C7001E5672 /* BookDataSingleton.m */,
 				2533ECE719FAEDE10000CC6D /* Constants.h */,
 				2533ECE819FAEDE10000CC6D /* Constants.m */,
 			);
@@ -356,6 +361,7 @@
 			files = (
 				2533ECC319FAC3CD0000CC6D /* MainViewController.m in Sources */,
 				25BBE2721A023F8200773849 /* EditBookViewController.m in Sources */,
+				255366CF1A1555C7001E5672 /* BookDataSingleton.m in Sources */,
 				2533ECE619FAE1B20000CC6D /* BookDetailViewController.m in Sources */,
 				253B7D021A00C2740018C5BF /* APIConnectionHelper.m in Sources */,
 				2533ECBD19FAC3CD0000CC6D /* AppDelegate.m in Sources */,
